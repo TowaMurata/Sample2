@@ -9,7 +9,7 @@ import java.util.List;
 
 import Entity.ProductEntity;
 
-public class ProductDao extends AbstractDao {
+public class ReviewDao extends AbstractDao {
 	// データベース接続に使用する情報
 
 	public List<ProductEntity> ranking() {
@@ -90,38 +90,5 @@ public class ProductDao extends AbstractDao {
 
 		return OrderProductEntityList;
 
-	}
-
-	public ProductEntity getReviewProdcutInfo(int item_id) {
-
-		Connection connection = super.getConnection();
-		ProductEntity entity = null;
-
-		try {
-			String sql = "SELECT * FROM item WHERE id = ?;";
-
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, item_id);
-
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				entity = new ProductEntity();
-				entity.setId(resultSet.getInt("id"));
-				entity.setName(resultSet.getString("name"));
-				entity.setCategory(resultSet.getString("category"));
-				entity.setStock(resultSet.getInt("stock"));
-				entity.setSales_price(resultSet.getInt("sales_price"));
-				entity.setTarget_gender_code(resultSet.getString("target_gender_code"));
-			}
-
-			resultSet.close();
-			preparedStatement.close();
-			super.closeConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return entity;
 	}
 }
