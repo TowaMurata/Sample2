@@ -10,7 +10,7 @@
 </head>
 <body>
 <%= productEntity.getName() %>のレビュー
-<form action ="" method="post">
+<form action ="/Sample2/ReviewServlet" method="post">
   レビュー内容 : <input type="text" name="review">
   <input type="submit" value="レビュー登録する">
 </form>

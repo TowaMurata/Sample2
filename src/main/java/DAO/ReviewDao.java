@@ -3,54 +3,15 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Entity.ProductEntity;
+import Entity.ReviewEntity;
 
 public class ReviewDao extends AbstractDao {
-	// データベース接続に使用する情報
 
-	public List<ProductEntity> ranking() {
-		List<ProductEntity> rankingList = new ArrayList<ProductEntity>();
-
-		// データベースへ接続
-
-		// SELECT文を準備
-		String sql = "select * from item order by stock limit 3 offset 0";
-		PreparedStatement pStmt;
-		try {
-			Connection connection = super.getConnection();
-			pStmt = connection.prepareStatement(sql);
-			ResultSet rs = pStmt.executeQuery();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				String category = rs.getString("category");
-				int stock = rs.getInt("stock");
-				int sales_price = rs.getInt("sales_price");
-				int target_gender_code = rs.getInt("target_gender_code");
-				ProductEntity productEntity = new ProductEntity(id, name, category, stock, sales_price,
-						target_gender_code);
-				rankingList.add(productEntity);
-			}
-
-			rs.close();
-			pStmt.close();
-			super.closeConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		// SELECTを実行し、結果表を取得
-
-		// 結果表に格納されたレコードの内容を
-		// rankingインスタンスに設定し、ArrayListインスタンスに追加
-		return rankingList;
-	}
-
-	public List<ProductEntity> getProductDetail(List<Integer> itemIdList) {
+	public List<ProductEntity> getProductDetail(ReviewEntity reviewEntity) {
 
 		Connection connection = super.getConnection();
 		List<ProductEntity> OrderProductEntityList = new ArrayList<>();

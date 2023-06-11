@@ -28,7 +28,7 @@ List<ProductEntity> OrderProductEntityList =
               商品名 : <%=OrderProductEntityList.get(j).getName()%>
               購入数 : <%=OrderPurchaseEntityList.get(i).getOrder_quantity()%>
         	  <img src= <%= str %>>
-        	  <form action="/Sample2/ReviewServlet"method ="get">
+        	  <form action="/Sample2/ReviewInputServlet"method ="get">
         	  <button type="submit" name="id" value=<%=OrderPurchaseEntityList.get(i).getItem_id()%>>レビューを書く</button>
         	  </form> 
          <%}
