@@ -14,35 +14,29 @@ import Entity.OrderPurchaseEntity;
 import Entity.ProductEntity;
 import Service.MypageService;
 
-
 @WebServlet("/MypageServlet")
 public class MypageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		//セッションスコープからユーザーIDを取り出す。(省略してIDを123にする)
 		int user_id = 123;
-		List<OrderPurchaseEntity> OrderPurchaseEntityList = 
-				MypageService.getOrderHistoryEntity(user_id);
-		
-		List<ProductEntity> OrderProductEntityList =
-				MypageService.productInfo(OrderPurchaseEntityList);
-		
+		List<OrderPurchaseEntity> OrderPurchaseEntityList = MypageService.getOrderHistoryEntity(user_id);
+
+		List<ProductEntity> OrderProductEntityList = MypageService.productInfo(OrderPurchaseEntityList);
+
+		request.setAttribute("OrderPurchaseEntityList", OrderPurchaseEntityList);
 		request.setAttribute("OrderProductEntityList", OrderProductEntityList);
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
-	
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request,response);
+		doPost(request, response);
 	}
-
-
 
 }

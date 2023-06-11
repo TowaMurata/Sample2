@@ -49,49 +49,46 @@ public class ProductDao extends AbstractDao {
 		// rankingインスタンスに設定し、ArrayListインスタンスに追加
 		return rankingList;
 	}
-	
-	public List<ProductEntity> getProductDetail(List<Integer> itemIdList){
-		
+
+	public List<ProductEntity> getProductDetail(List<Integer> itemIdList) {
+
 		Connection connection = super.getConnection();
 		List<ProductEntity> OrderProductEntityList = new ArrayList<>();
 		ProductEntity entity = null;
-		
+
 		try {
 			String sql = "SELECT * FROM item WHERE id = ?";
-		
-			for(int i = 1; i < itemIdList.size(); i++) {
-		                sql = sql.concat(" OR id = ?");
-		    }
+
+			for (int i = 1; i < itemIdList.size(); i++) {
+				sql = sql.concat(" OR id = ?");
+			}
 			sql = sql.concat(";");
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			for(int i = 0,  j = 1; i < itemIdList.size(); i++ , j++) {
+			for (int i = 0, j = 1; i < itemIdList.size(); i++, j++) {
 				preparedStatement.setInt(j, itemIdList.get(i));
 			}
-			System.out.println(itemIdList.get(0));
-			System.out.println(itemIdList.get(1));
-			System.out.println(sql);
 
-		ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-		while(resultSet.next()){
-			entity = new ProductEntity();
-			entity.setId(resultSet.getInt("id"));
-			entity.setName(resultSet.getString("name"));
-			entity.setCategory(resultSet.getString("category"));
-			entity.setStock(resultSet.getInt("stock"));
-			entity.setSales_price(resultSet.getInt("sales_price"));
-			entity.setTarget_gender_code(resultSet.getString("target_gender_code"));
-			OrderProductEntityList.add(entity);
-		}
+			while (resultSet.next()) {
+				entity = new ProductEntity();
+				entity.setId(resultSet.getInt("id"));
+				entity.setName(resultSet.getString("name"));
+				entity.setCategory(resultSet.getString("category"));
+				entity.setStock(resultSet.getInt("stock"));
+				entity.setSales_price(resultSet.getInt("sales_price"));
+				entity.setTarget_gender_code(resultSet.getString("target_gender_code"));
+				OrderProductEntityList.add(entity);
+			}
 
-		resultSet.close();
-		preparedStatement.close();
-		super.closeConnection();
-		}catch(Exception e){
+			resultSet.close();
+			preparedStatement.close();
+			super.closeConnection();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return OrderProductEntityList;
-	
+
 	}
 }

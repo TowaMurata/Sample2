@@ -8,10 +8,10 @@
 </head>
 <body>
 
-  <form action="/Sample/ProdcutListServlet" method="get">
+  <form action="/Sample2/ProdcutListServlet" method="get">
     <input type="submit" value="商品一覧">
   </form>
-  <form action="/Sample/MypageServlet" method="post">
+  <form action="/Sample2/MypageServlet" method="post">
     <input type="submit" value="マイページ">
   </form>
 </body>
