@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <form action="/ShopSite/ContctServlet" method="get">
-  <input type="submit" class="btn" value="お問い合わせ">
-  </form>
+  <c:if test="${empty sessionScope.SESSION_KEY_LOGIN_USER}">
+    ログイン成功
+  </c:if>
 </body>
 </html>

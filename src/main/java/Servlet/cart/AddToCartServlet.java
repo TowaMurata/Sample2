@@ -1,4 +1,4 @@
-package Servlet;
+package Servlet.cart;
 
 import java.io.IOException;
 import java.util.List;

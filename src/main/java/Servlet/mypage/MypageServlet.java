@@ -1,4 +1,4 @@
-package Servlet;
+package Servlet.mypage;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,6 +1,5 @@
+/Util/
+/Service/
 /DAO/
 /Servlet/
-/Service/
-/logic/
-/co.jp/
-/Entity/
+/constant/

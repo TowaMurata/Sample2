@@ -14,5 +14,12 @@
   <form action="/Sample2/MypageServlet" method="post">
     <input type="submit" value="マイページ">
   </form>
+  <form action="/Sample2/AccountInputInitServlet"method="get">
+    <input type="submit" value="会員登録">
+  </form>
+  <form action="/Sample2/LoginInputServlet"method="get">
+    <input type="submit" value="ログイン">
+  </form>
 </body>
+
 </html>
