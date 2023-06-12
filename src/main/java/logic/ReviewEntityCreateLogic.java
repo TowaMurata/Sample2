@@ -12,4 +12,12 @@ public class ReviewEntityCreateLogic {
 		reviewEntity.setItem_id(itemId);
 		return reviewEntity;
 	}
+	
+	public static ReviewEntity addDitailReviewEntityCreate(int number, String review, ReviewEntity reviewEntity) {
+		
+		reviewEntity.setId(number);
+		reviewEntity.setReview(review);
+		return reviewEntity;
+		
+	}
 }
