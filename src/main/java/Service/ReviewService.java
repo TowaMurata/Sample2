@@ -1,16 +1,16 @@
 package Service;
 
-import DAO.ProductDao;
+import DAO.ItemDao;
 import DAO.ReviewDao;
-import Entity.ProductEntity;
+import Entity.ItemEntity;
 import Entity.ReviewEntity;
 import logic.ReviewEntityCreateLogic;
 
 public class ReviewService {
-	public static ProductEntity prodcutInfo(String item_id) {
+	public static ItemEntity prodcutInfo(String item_id) {
 		int itemId = Integer.parseInt(item_id);
-		ProductDao prodcutdao = new ProductDao();
-		ProductEntity productEntity = prodcutdao.getReviewProdcutInfo(itemId);
+		ItemDao prodcutdao = new ItemDao();
+		ItemEntity productEntity = prodcutdao.getReviewProdcutInfo(itemId);
 		return productEntity;
 	}
 

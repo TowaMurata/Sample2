@@ -1,4 +1,4 @@
-package Servlet;
+package Servlet.review;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Entity.ProductEntity;
+import Entity.ItemEntity;
 import Entity.ReviewEntity;
 import Service.ReviewService;
 
@@ -20,7 +20,7 @@ public class ReviewInputServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProductEntity productEntity = ReviewService.prodcutInfo(request.getParameter("id"));
+		ItemEntity itemEntity = ReviewService.prodcutInfo(request.getParameter("id"));
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("message");
@@ -29,7 +29,7 @@ public class ReviewInputServlet extends HttpServlet {
 		ReviewEntity reviewEntity = logic.ReviewEntityCreateLogic.reviewEntityCreate(account_id,
 				request.getParameter("id"));
 
-	    session.setAttribute("productEntity", productEntity);
+	    session.setAttribute("ItemEntity", itemEntity);
 		session.setAttribute("reviewEntity", reviewEntity);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/reviewInput.jsp");

@@ -1,4 +1,4 @@
-package Servlet;
+package Servlet.review;
 
 import java.io.IOException;
 

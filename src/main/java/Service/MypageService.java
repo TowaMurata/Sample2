@@ -3,10 +3,10 @@ package Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.ItemDao;
 import DAO.OrderPurchaseDao;
-import DAO.ProductDao;
+import Entity.ItemEntity;
 import Entity.OrderPurchaseEntity;
-import Entity.ProductEntity;
 public class MypageService {
 	
 	public static List<OrderPurchaseEntity> getOrderHistoryEntity(int user_id) {
@@ -16,18 +16,18 @@ public class MypageService {
 		return OrderHistryEntityList;
 	}
 	
-	public static List<ProductEntity> productInfo(List<OrderPurchaseEntity> OrderPurchaseEntityList){
+	public static List<ItemEntity> ItemInfo(List<OrderPurchaseEntity> OrderPurchaseEntityList){
 		
 		List<Integer> itemIdList = new ArrayList<>();
 		for(int i = 0; i < OrderPurchaseEntityList.size(); i++) {
 			itemIdList.add(OrderPurchaseEntityList.get(i).getItem_id());
 		}
 		
-		List<ProductEntity> OrderProductEntityList = new ArrayList<>();
-		ProductDao productDao = new ProductDao();
-		OrderProductEntityList = productDao.getProductDetail(itemIdList);
+		List<ItemEntity> OrderItemEntityList = new ArrayList<>();
+		ItemDao itemDao = new ItemDao();
+		OrderItemEntityList = itemDao.getItemDetail(itemIdList);
 
 		
-		return OrderProductEntityList;
+		return OrderItemEntityList;
     }
 }

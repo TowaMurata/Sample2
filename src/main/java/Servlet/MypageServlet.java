@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Entity.ItemEntity;
 import Entity.OrderPurchaseEntity;
-import Entity.ProductEntity;
 import Service.MypageService;
 
 @WebServlet("/MypageServlet")
@@ -25,10 +25,10 @@ public class MypageServlet extends HttpServlet {
 		int user_id = 123;
 		List<OrderPurchaseEntity> OrderPurchaseEntityList = MypageService.getOrderHistoryEntity(user_id);
 
-		List<ProductEntity> OrderProductEntityList = MypageService.productInfo(OrderPurchaseEntityList);
+		List<ItemEntity> OrderItemEntityList = MypageService.ItemInfo(OrderPurchaseEntityList);
 
 		request.setAttribute("OrderPurchaseEntityList", OrderPurchaseEntityList);
-		request.setAttribute("OrderProductEntityList", OrderProductEntityList);
+		request.setAttribute("OrderItemEntityList", OrderItemEntityList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 
